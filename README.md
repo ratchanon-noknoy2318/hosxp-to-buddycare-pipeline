@@ -14,6 +14,15 @@
 
 ---
 
+## ตัวอย่างการใช้งาน (Dashboard Preview)
+
+| หน้าจอระบบวิเคราะห์ข้อมูลคนไข้ (Official Interface) |
+| :---: |
+| ![Dashboard Screenshot](screenshot.png) |
+| *แสดงสถิติสำคัญ กราฟวิเคราะห์ความดัน และรายชื่อผู้ป่วยกลุ่มเสี่ยง* |
+
+---
+
 ## รายละเอียดทางเทคนิค (Tech Stack)
 
 | หมวดหมู่ | เครื่องมือที่ใช้ |
@@ -21,7 +30,6 @@
 | **ภาษาหลัก** | Python 3.9+ |
 | **การจัดการข้อมูล** | PySpark, Pandas, NumPy |
 | **การแสดงผล** | Streamlit, Plotly |
-
 
 ---
 
@@ -50,7 +58,7 @@
 
 | โฟลเดอร์/ไฟล์ | หน้าที่ |
 | :--- | :--- |
-| `src/app.py` | ไฟล์หลักสำหรับรัน Streamlit Dashboard 
+| `src/app.py` | ไฟล์หลักสำหรับรัน Streamlit Dashboard |
 | `requirements.txt` | รายชื่อ Library ทั้งหมดที่ต้องใช้ |
 | `README.md` | เอกสารอธิบายโปรเจกต์ |
 
