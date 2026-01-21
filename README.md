@@ -1,48 +1,30 @@
-# 🏥 รายงานผลการตรวจทางห้องปฏิบัติการ (Laboratory Report)
-
-**วันที่ตรวจ:** 4 มีนาคม 2568  
-**สถานที่:** ศูนย์บริการสาธารณสุขเทศบาลเมือง
-
-## 📊 ตารางสรุปผลการตรวจ (Selected Results)
-ตารางด้านล่างแสดงรายการผลแล็บที่สำคัญ โดยคัดกรองเฉพาะค่าที่มีผลการตรวจจริง
-
-| No. | Sex | Age | Test Name | Result | Flag | Reference Range | Method/Instrument |
-|:---:|:---:|:---:|:---|:---:|:---:|:---|:---|
-| 1 | 👨 M | 54 | **FBS** (Glucose) | 95 | 🟢 NM | 74 - 106 | DM2-RES |
-| 5 | 👨 M | 54 | **Creatinine** | **0.69** | 🟡 LO | 0.72 - 1.18 | DM2-RES |
-| 6 | 👨 M | 54 | **Cholesterol** | **207** | 🔴 HI | < 200 | DM2-RES |
-| 7 | 👨 M | 54 | **Triglyceride** | 202 | 🔴 HI | < 150 | DM2-RES |
-| 8 | 👨 M | 54 | **HDL-C** | **39** | 🟡 LO | 40 - 60 | DM2-RES |
-| 9 | 👨 M | 54 | **LDL-C** | **157** | 🔴 HI | < 130 | DM2-RES |
-| 12 | 👨 M | 54 | **HbA1C** | **9.0** | 🔴 HI | 4.6 - 6.2 | Premier Hb9210 |
-| 14 | 👩 F | 57 | **FBS** (Glucose) | **161** | 🔴 HI | 74 - 106 | DM2-RES |
-| 31 | 👩 F | 78 | **Triglyceride** | **105** | 🟡 LO | < 150 | DM2-RES |
-| 41 | 👨 M | 64 | **Cholesterol** | **234** | 🔴 HI | < 200 | DM2-RES |
-
-> **Note:** > 🔴 **HI** = สูงกว่าเกณฑ์ปกติ (High)  
-> 🟡 **LO** = ต่ำกว่าเกณฑ์ปกติ (Low)  
-> 🟢 **NM** = ปกติ (Normal)
+# HOSxP to Buddy Care Pipeline
+**Clinical Data Integration & ETL Automation**
 
 ---
 
-## 📂 ข้อมูลดิบทั้งหมด (Full Raw Data)
-ข้อมูลต้นฉบับทั้งหมดรวมถึงค่า Timestamp และข้อมูลทางเทคนิคอื่นๆ (คลิกเพื่อขยายดู)
+### Technical Specification
+| Category | Detail | Implementation |
+| :--- | :--- | :--- |
+| **Stack** | Python / SQL | Automated ETL Pipeline |
+| **Source** | HOSxP | MySQL Database Optimization |
+| **Target** | Buddy Care | API / Web Platform Integration |
+| **Integrity** | Data Mapping | Schema Compatibility Logic |
 
-<details>
-<summary><b>คลิกที่นี่เพื่อดูตารางข้อมูลเต็ม (Click to expand raw table)</b></summary>
+---
 
-```text
-+----+------+-----+-------------+--------+------+----------------+
-| No | Gen  | Age | Test Name   | Result | Flag | Reference      |
-+----+------+-----+-------------+--------+------+----------------+
-|  1 | Male |  54 | FBS         |     95 | NM   | N: 74 - 106    |
-|  5 | Male |  54 | Creatinine  |   0.69 | LO   | N: 0.72 - 1.18 |
-|  6 | Male |  54 | Cholesterol |    207 | HI   | N: < 200       |
-|  7 | Male |  54 | Triglyceride|    202 | NM   | N: < 150       |
-|  8 | Male |  54 | HDL-C       |     39 | LO   | N: 40 - 60     |
-|  9 | Male |  54 | LDLD        |    157 | HI   | N: < 130       |
-| 12 | Male |  54 | HbA1C       |    9.0 | HI   | N: 4.6 - 6.2   |
-| 14 | Fem  |  57 | FBS         |    161 | HI   | N: 74 - 106    |
-| 17 | Fem  |  57 | Creatinine  |   0.64 | NM   | N: 0.55 - 1.02 |
-| 18 | Fem  |  57 | Cholesterol |    165 | NM   | N: < 200       |
-... (และรายการอื่นๆ ตามไฟล์แนบ) ...
+### Engineering & Impact
+| Component | Technical Outcome |
+| :--- | :--- |
+| **Extraction** | High-volume clinical data retrieval via optimized SQL |
+| **Consistency** | Systematic validation for cross-platform data integrity |
+| **Automation** | Replaced manual entry with scheduled synchronization |
+| **Efficiency** | Real-time data availability for clinical staff |
+
+---
+
+### Quick Start & Contact
+- **Setup:** `pip install -r requirements.txt`
+- **Run:** `python main.py`
+- **License:** MIT © 2026 Ratchanon Noknoy
+- **Connect:** [LinkedIn](https://www.linkedin.com/in/ratchanon-noknoy/) | [GitLab](https://gitlab.com/ratchanon.noknoy2318)
