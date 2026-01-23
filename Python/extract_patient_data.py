@@ -1,29 +1,52 @@
 import os
-import pandas as pd
-from sqlalchemy import create_engine
+import logging
 import urllib.parse
+from dataclasses import dataclass
+from typing import Optional
 
-# Database Configuration
-# Ideally, load these from environment variables or a secure config file
-DB_HOST = os.getenv('DB_HOST', 'localhost')
-DB_USER = os.getenv('DB_USER', 'sa')
-DB_PASSWORD = os.getenv('DB_PASSWORD', 'sa')
-DB_NAME = os.getenv('DB_NAME', 'hosxp')
-DB_PORT = os.getenv('DB_PORT', '3300')
+import pandas as pd
+from sqlalchemy import create_engine, Engine
+from sqlalchemy.exc import SQLAlchemyError
 
-def extract_patient_data():
-    """
-    Connects to the HOSxP database and extracts patient data.
-    """
-    try:
-        # Create SQLAlchemy engine (MySQL/MariaDB compatible)
-        # Ensure you have pymysql installed: pip install pymysql
-        encoded_password = urllib.parse.quote_plus(DB_PASSWORD)
-        connection_string = f"mysql+pymysql://{DB_USER}:{encoded_password}@{DB_HOST}:{DB_PORT}/{DB_NAME}?charset=utf8mb4"
-        engine = create_engine(connection_string)
+# Configure Logging
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s - %(levelname)s - %(message)s"
+)
+logger = logging.getLogger(__name__)
 
-        # SQL Query
-        sql_query = """
+@dataclass
+class DatabaseConfig:
+    """Configuration for database connection."""
+    host: str
+    user: str
+    password: str
+    name: str
+    port: str = "3300"
+
+    @property
+    def connection_string(self) -> str:
+        encoded_password = urllib.parse.quote_plus(self.password)
+        return f"mysql+pymysql://{self.user}:{encoded_password}@{self.host}:{self.port}/{self.name}?charset=utf8mb4"
+
+class PatientDataExtractor:
+    """Handles extraction of patient data from HOSxP database."""
+
+    def __init__(self, config: DatabaseConfig):
+        self.config = config
+        self.engine: Optional[Engine] = None
+        self._init_engine()
+
+    def _init_engine(self) -> None:
+        try:
+            self.engine = create_engine(self.config.connection_string)
+            logger.debug("Database engine initialized.")
+        except Exception as e:
+            logger.error(f"Failed to initialize database engine: {e}")
+            raise
+
+    def _get_query(self) -> str:
+        return """
         SELECT
           CASE WHEN p.sex = 1 THEN '003'
                WHEN p.sex = 2 THEN '004'
@@ -52,16 +75,43 @@ def extract_patient_data():
           AND p.birthdate IS NOT NULL;
         """
 
-        # Execute query
-        df = pd.read_sql(sql_query, engine)
-        return df
+    def extract(self) -> Optional[pd.DataFrame]:
+        """
+        Executes the query and returns a pandas DataFrame.
+        """
+        if not self.engine:
+            logger.error("Database engine is not ready.")
+            return None
 
-    except Exception as e:
-        print(f"Error extracting data: {e}")
-        return None
+        try:
+            query = self._get_query()
+            logger.info("Starting data extraction...")
+            
+            with self.engine.connect() as connection:
+                df = pd.read_sql(query, connection)
+            
+            logger.info(f"Extraction complete. Retrieved {len(df)} records.")
+            return df
+
+        except SQLAlchemyError as e:
+            logger.error(f"Database error during extraction: {e}")
+            return None
+        except Exception as e:
+            logger.error(f"Unexpected error: {e}")
+            return None
 
 if __name__ == "__main__":
-    df = extract_patient_data()
+    # Load config from env or defaults
+    config = DatabaseConfig(
+        host=os.getenv('DB_HOST', 'localhost'),
+        user=os.getenv('DB_USER', 'sa'),
+        password=os.getenv('DB_PASSWORD', 'sa'),
+        name=os.getenv('DB_NAME', 'hosxp'),
+        port=os.getenv('DB_PORT', '3300')
+    )
+
+    extractor = PatientDataExtractor(config)
+    df = extractor.extract()
+    
     if df is not None:
-        print(f"Extracted {len(df)} records.")
         print(df.head())
