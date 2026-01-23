@@ -2,16 +2,10 @@ import pandas as pd
 from datetime import datetime
 from linebot import LineBotApi
 from linebot.models import TextSendMessage
-from dotenv import load_dotenv
-import os
-
-# โหลดค่าจากไฟล์ .env
-load_dotenv()
-
 
 # 1. ใส่ Token ของคุณเพื่อทดสอบการส่งจริง
-LINE_ACCESS_TOKEN = os.getenv('LINE_ACCESS_TOKEN')
-USER_ID = os.getenv('LINE_USER_ID')
+LINE_ACCESS_TOKEN = 'LINE_ACCESS_TOKEN'
+USER_ID = 'USER_ID'
 
 def test_report_format():
     # 2. จำลองข้อมูล (Mock Data) เหมือนที่ดึงมาจาก SQL
