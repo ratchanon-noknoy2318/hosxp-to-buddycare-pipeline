@@ -30,6 +30,20 @@
 
 ---
 
+### Patient Data Schema
+
+| HOSxP Field | Type | Description | Buddy Care Mapping |
+| :--- | :--- | :--- | :--- |
+| **hn** | String | Hospital Number (Key) | `patient_hn` |
+| **cid** | String | National ID | `citizen_id` |
+| **pname** | String | Title (e.g., Mr, Ms) | `title` |
+| **fname** | String | First Name | `first_name` |
+| **lname** | String | Last Name | `last_name` |
+| **birthday** | Date | Date of Birth | `dob` |
+| **sex** | Integer | Gender (1=M, 2=F) | `gender` |
+
+---
+
 ### Operational Impact
 
 | Metric | Outcome |
