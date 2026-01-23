@@ -1,56 +1,14 @@
-# Project Documentation: HOSxP to Buddy Care Data Pipeline
+### Data Mapping Schema (HOSxP Standard)
 
-| Information | Details |
-| :--- | :--- |
-| **Project Name** | HOSxP to Buddy Care Data Integration |
-| **Developer** | Ratchanon Noknoy |
-| **Role** | Software Engineer / Data Pipeline Developer |
-| **Status** | Completed |
-
----
-
-### Project Specification
-
-| Category | Description |
-| :--- | :--- |
-| **Objective** | To migrate and synchronize patient records from HOSxP to the Buddy Care platform while maintaining data integrity. |
-| **Source System** | HOSxP (MySQL Database) |
-| **Destination** | Buddy Care Web Platform |
-| **Key Processes** | Automated ETL, SQL Optimization, Data Validation |
-
----
-
-### Technical Implementation
-
-| Component | Technical Details |
-| :--- | :--- |
-| **Data Extraction** | Optimized SQL queries for high-volume clinical data retrieval. |
-| **Consistency** | Mapping logic implemented to ensure schema compatibility between platforms. |
-| **Automation** | Streamlined synchronization to replace manual data entry. |
-
----
-
-### Patient Data Schema
-
-| HOSxP Field | Type | Description | Buddy Care Mapping |
+| HOSxP Field | Local Field | Type | Description |
 | :--- | :--- | :--- | :--- |
-| **hn** | String | Hospital Number (Key) | `patient_hn` |
-| **cid** | String | National ID | `citizen_id` |
-| **pname** | String | Title (e.g., Mr, Ms) | `title` |
-| **fname** | String | First Name | `first_name` |
-| **lname** | String | Last Name | `last_name` |
-| **birthday** | Date | Date of Birth | `dob` |
-| **sex** | Integer | Gender (1=M, 2=F) | `gender` |
-
----
-
-### Operational Impact
-
-| Metric | Outcome |
-| :--- | :--- |
-| **Efficiency** | Significant reduction in time required for data synchronization. |
-| **Accuracy** | Enhanced data reliability for clinical reporting and patient tracking. |
-| **Service Quality** | Improved access to real-time information for healthcare staff. |
+| **hn** | `hn` | VARCHAR(10) | Hospital Number |
+| **cid** | `cid` | VARCHAR(13) | National ID (Primary Key) |
+| **pname** | `pname` | VARCHAR(20) | Title (e.g., นาย, นาง, นางสาว) |
+| **fname** | `fname` | VARCHAR(100) | First Name |
+| **lname** | `lname` | VARCHAR(100) | Last Name |
+| **birthday** | `birth_year` | INT | Year of Birth |
+| **sex** | `sex` | INT | Gender (1=Male, 2=Female) |
 
 ---
 
