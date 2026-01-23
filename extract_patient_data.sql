@@ -1,7 +1,7 @@
 SELECT
-    case when p.sex = 1 then '003'
-       when p.sex = 2 then '004'
-   end as 'คำนำหน้า',
+    CASE WHEN p.sex = 1 THEN '003'
+         WHEN p.sex = 2 THEN '004'
+    END AS 'คำนำหน้า',
     p.fname AS "ชื่อ",
     p.lname AS "นามสกุล",
     p.sex AS "เพศ",
@@ -14,9 +14,8 @@ SELECT
     v.village_name AS "ชื่อหมู่บ้าน",
     REGEXP_REPLACE(h.address, '[^0-9]', '') AS "บ้านเลขที่",
     h.road AS "ชื่อถนน"
-
 FROM person p
-    LEFT JOIN pname p2 ON p.pname = p2.name
+    LEFT JOIN pname p2 ON p.pname = p2.`name`
     LEFT JOIN house h ON p.house_id = h.house_id
     LEFT JOIN village v ON h.village_id = v.village_id
     LEFT JOIN patient p3 ON p.patient_hn = p3.hn

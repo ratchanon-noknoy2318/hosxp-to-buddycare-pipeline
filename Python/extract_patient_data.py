@@ -1,6 +1,7 @@
 import os
 import pandas as pd
 from sqlalchemy import create_engine
+import urllib.parse
 
 # Database Configuration
 # Ideally, load these from environment variables or a secure config file
@@ -17,7 +18,8 @@ def extract_patient_data():
     try:
         # Create SQLAlchemy engine (MySQL/MariaDB compatible)
         # Ensure you have pymysql installed: pip install pymysql
-        connection_string = f"mysql+pymysql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}?charset=utf8mb4"
+        encoded_password = urllib.parse.quote_plus(DB_PASSWORD)
+        connection_string = f"mysql+pymysql://{DB_USER}:{encoded_password}@{DB_HOST}:{DB_PORT}/{DB_NAME}?charset=utf8mb4"
         engine = create_engine(connection_string)
 
         # SQL Query
