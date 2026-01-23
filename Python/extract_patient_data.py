@@ -11,11 +11,23 @@ db_config = {
     'port': 3306,
     'charset': 'utf8'
 }
+def test_connection():
+    # Database configuration
+    db_config = {
+        'host': 'localhost',
+        'user': 'admin',
+        'password': '123456',
+        'database': 'hosxp',
+        'port': 3306,
+        'charset': 'utf8'
+    }
 
 def export_full_report():
+    conn = None
     try:
         # 2. เชื่อมต่อ MySQL
         print("Connecting to Database...")
+        print("Connecting to database...")
         conn = pymysql.connect(**db_config)
         
         # 3. SQL Query (ชุดที่คุณให้มา)
@@ -48,6 +60,7 @@ def export_full_report():
         # 4. ดึงข้อมูลเข้า Pandas DataFrame
         df = pd.read_sql(sql_query, conn)
         print(f"ดึงข้อมูลมาได้ทั้งหมด: {len(df)} รายการ")
+        print("Connection successful!")
 
         # --- [ 5. ส่วนจัดการข้อมูล (Data Transformation) ] ---
         
@@ -65,6 +78,10 @@ def export_full_report():
         df['ชื่อถนน'] = df['ชื่อถนน'].fillna('-')
         df['ละติจูด'] = df['ละติจูด'].fillna(0)
         df['ลองติจูด'] = df['ลองติจูด'].fillna(0)
+        with conn.cursor() as cursor:
+            cursor.execute("SELECT VERSION()")
+            version = cursor.fetchone()
+            print(f"Database version: {version[0]}")
 
         # จ. เลือกและเรียงลำดับคอลัมน์ที่จะเอาลง Excel
         final_columns = [
@@ -86,9 +103,13 @@ def export_full_report():
 
     except Exception as e:
         print(f"เกิดข้อผิดพลาด: {e}")
+        print(f"Error: {e}")
     finally:
-        if 'conn' in locals():
+      
+        if conn:
             conn.close()
+            print("Connection closed.")
 
 if __name__ == "__main__":
     export_full_report()
+    test_connection()
