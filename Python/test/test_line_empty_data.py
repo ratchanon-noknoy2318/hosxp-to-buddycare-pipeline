@@ -4,8 +4,8 @@ from linebot import LineBotApi
 from linebot.models import TextSendMessage
 
 # ใส่ Token เดิมของคุณ
-LINE_ACCESS_TOKEN = 'LINE_ACCESS_TOKEN'
-USER_ID = 'USER_ID'
+LINE_ACCESS_TOKEN = 'It8K/0nBmj5oDJjaKaB4DhVk3mAKShvbn5EXbS8dOisiUzQuoCk4Yutos90qHOnIbaR39poafQA+ioD5iEbi8qcxnULH5A1DXzlF5QR+ByPmTFCENttFnxwzoFWfGFnZdrrOfmmT2R5iAL4m2vqGRAdB04t89/1O/w1cDnyilFU='
+USER_ID = 'Ucf6ba1445f99f493624c26509d906b5d'
 
 def test_empty_report():
     # --- [ จุดที่เปลี่ยน ] ---
