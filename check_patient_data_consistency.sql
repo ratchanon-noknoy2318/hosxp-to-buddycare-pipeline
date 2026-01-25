@@ -1,8 +1,8 @@
 SELECT 
     JSON_ARRAYAGG(
         JSON_OBJECT(
-            'hn', hn,
-            'hashed_id', SHA2(cid, 256), 
+            'hashed_hn', SHA2(hn, 256), 
+            'masked_id', CONCAT(LEFT(cid, 3), '-XXXXX-', RIGHT(cid, 3)), 
             'masked_fname', CONCAT(LEFT(fname, 2), '****'),
             'masked_lname', CONCAT(LEFT(lname, 2), '****'),
             'prefix', pname,
