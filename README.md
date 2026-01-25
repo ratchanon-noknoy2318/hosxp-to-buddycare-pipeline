@@ -1,15 +1,15 @@
 # HOSxP Data Integration Pipeline
 
-Developed and optimized SQL-based data integration pipelines using HOSxP data (400K+ records) to support analytics, reporting, and automation use cases.
+Developed and optimized SQL-based data integration pipelines using HOSxP data (400K+ records) to support executive analytics, AI-driven data quality, and operational automation.
 
 ---
 
 ## Data Governance & Security
-To ensure compliance with PDPA (Thailand's Personal Data Protection Act) and handle sensitive healthcare information securely, this project adheres to the following principles:
+To ensure compliance with **PDPA (Thailand's Personal Data Protection Act)** and handle sensitive healthcare information securely, this project adheres to the following principles:
 
-* **Data Minimization:** Only essential PII (Personally Identifiable Information) is extracted for workflow automation.
-* **Sensitive Data Handling:** Strict management of patient records (400K+ entries) ensuring data reliability and integrity.
-* **Security by Design:** Database schemas are structured with unique constraints and clear data typing to prevent unauthorized data duplication or leakage.
+* **Data Minimization:** Only essential PII (Personally Identifiable Information) is extracted for specific workflow requirements.
+* **Sensitive Data Handling:** Strict management of 400K+ patient records, ensuring end-to-end data reliability and integrity.
+* **Security by Design:** Database schemas are structured with unique constraints and strict data typing to prevent unauthorized duplication or leakage.
 
 ---
 
@@ -19,7 +19,7 @@ The following table describes the mapping from the source HOSxP system to the in
 | HOSxP Field (person table) | patients Table Field | Type | Description | PDPA/Security Note |
 | :--- | :--- | :--- | :--- | :--- |
 | p.cid | citizen_id | VARCHAR(13) | National ID (UNIQUE, NOT NULL) | PII - Sensitive Unique ID |
-| p.pname | title | VARCHAR(20) | Title (e.g., นาย, นาง, นางสาว) | Identity Data |
+| p.pname | title | VARCHAR(20) | Title (e.g., Mr., Mrs., Ms.) | Identity Data |
 | p.fname | first_name | VARCHAR(100) | First Name | Identity Data |
 | p.lname | last_name | VARCHAR(100) | Last Name | Identity Data |
 | p.birthdate | birthdate | DATE | Full Date of Birth | Sensitive - For Age Logic |
@@ -31,19 +31,19 @@ The following table describes the mapping from the source HOSxP system to the in
 ---
 
 ## Data Utilization & Use Cases
-ข้อมูลที่ผ่านกระบวนการ Integration นี้ถูกนำไปใช้เพื่อสร้างมูลค่าในด้านต่างๆ ดังนี้:
+The integrated data is utilized across various organizational levels to drive efficiency and accuracy:
 
 ### 1. Executive Decision Support (Strategic Insights)
-* **High-Level Dashboards:** สรุปภาพรวมสถิติผู้ป่วยและทรัพยากรในโรงพยาบาลส่งตรงถึง **ผู้บริหารสูงสุด** เพื่อใช้ในการตัดสินใจเชิงกลยุทธ์และบริหารนโยบายองค์กร
-* **Resource Allocation:** วิเคราะห์แนวโน้มผู้รับบริการรายวัน/รายเดือน เพื่อการบริหารงบประมาณและกำลังคนให้สอดคล้องกับภาระงานจริง
+* **High-Level Dashboards:** Aggregated hospital statistics and resource metrics delivered to **top-level management** for strategic planning and policy making.
+* **Resource Allocation:** Trend analysis of daily/monthly patient visits to optimize budget management and human resource allocation based on actual workload.
 
 ### 2. AI-Powered Data Quality Assurance
-* **Anomaly Detection:** นำข้อมูลเข้าสู่โมเดล AI เพื่อตรวจหาข้อมูลที่ผิดปกติ (Outliers) เช่น ข้อมูลวันเกิดที่ไม่สัมพันธ์กับอายุจริง หรือรูปแบบรหัสบัตรประชาชนที่ไม่ถูกต้อง
-* **Data Integrity Audit:** ระบบ AI ช่วยระบุและคัดกรองข้อมูลที่อาจมีความคลาดเคลื่อนหรือซ้ำซ้อน เพื่อส่งให้เจ้าหน้าที่ตรวจสอบและแก้ไขให้ถูกต้อง (Master Data Management)
+* **Anomaly Detection:** Data is fed into AI models to identify outliers or irregularities, such as mismatched birthdates relative to age or invalid National ID formats.
+* **Data Integrity Audit:** AI-driven identification of duplicate or inconsistent records, streamlining the **Master Data Management (MDM)** process for staff verification.
 
 ### 3. Workflow Automation (Staff Alerts)
-* **Staff Notifications:** เชื่อมต่อกับ LINE Messaging API เพื่อส่งข้อความ **แจ้งเตือนเจ้าหน้าที่ผู้รับผิดชอบโดยตรง** เช่น แจ้งเตือนคิวนัดหมายล่วงหน้า หรือแจ้งเตือนสถานะเคสที่ต้องดำเนินการเร่งด่วน
-* **Registration Sync:** ระบบอัตโนมัติในการ Sync ข้อมูลผู้ป่วยไปยังระบบเฉพาะทางอื่นๆ ภายในเครือข่าย เพื่อลดภาระการกรอกข้อมูลใหม่และป้องกัน Human Error
+* **Staff Notifications:** Integration with **LINE Messaging API** to send automated alerts directly to responsible staff for upcoming appointments or urgent cases requiring immediate action.
+* **Registration Sync:** Automated synchronization of patient data across specialized internal systems to reduce manual entry, minimize human error, and save administrative time.
 
 ---
 
