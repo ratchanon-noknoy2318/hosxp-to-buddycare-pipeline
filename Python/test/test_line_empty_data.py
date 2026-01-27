@@ -8,7 +8,7 @@ LINE_ACCESS_TOKEN = 'LINE_ACCESS_TOKEN'
 USER_ID = 'USER_ID'
 
 def test_empty_report():
-    # --- [ จุดที่เปลี่ยน ] ---
+    # ---- [ จุดที่เปลี่ยน ] ----
     # สร้าง DataFrame ว่างเปล่าที่มีแต่หัวคอลัมน์ แต่ไม่มีข้อมูล (0 rows)
     df = pd.DataFrame(columns=['clinic_name', 'total'])
     
