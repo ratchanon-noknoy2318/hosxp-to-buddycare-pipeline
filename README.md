@@ -5,35 +5,43 @@
 
 ---
 
-## 1. Technical Framework
-* **Core Database:** SQL (HOSxP Production Environment)
-* **Data Auditing:** AI-Integrated Anomaly Detection
-* **Compliance:** 100% PDPA (Thailand) Standards via SQL Data Minimization
+### 1. Systematic Data Pipeline Structure
 
----
-
-## 2. Integrated Data Pipeline Structure
-
-| Layer | Technical Implementation (SQL-Based) | Strategic Outcome |
-| :--- | :--- | :--- |
-| **Executive Layer** | Engineered Analytical Views and Complex Strategic Queries. | Direct data accessibility for **Top-Level Management** decision-making. |
-| **Audit Layer** | Integrated AI models to detect anomalies and pattern irregularities. | Higher data reliability by identifying errors standard SQL filters miss. |
-| **Automation Layer** | Developed SQL Triggers and Stored Procedures for staff alerts. | Reduced administrative overhead and improved operational response. |
-| **Security Layer** | Enforced HN Primary Key and strict Schema constraints. | Secured **400K+ records** against duplication and unauthorized leakage. |
-
----
-
-## 3. Database Schema Architecture (Master Table)
-
-| Attribute | SQL Constraint | Classification | Functional Role |
+| Operational Layer | Technical Implementation (SQL) | AI & Data Logic | Organizational Impact |
 | :--- | :--- | :--- | :--- |
-| **hn** | **PRIMARY KEY** | **Anchor ID** | **Internal Hospital Reference** |
-| citizen_id | UNIQUE / NOT NULL | PII | National Identity Verification |
-| full_name | VARCHAR(200) | Identity | Patient Personal Identification |
-| birthdate | DATE | Logic | Basis for AI Age-Validation |
-| location_data | VARCHAR(MAX) | Geospatial | Infrastructure & Resource Logistics |
+| **Executive Layer** | Complex Analytical Views & Strategic Queries | Pattern Trend Analysis | **Top-Level Management** data accessibility for policy making. |
+| **Audit Layer** | SQL Validation Scripts & Master Data MDM | AI Anomaly & Age-Mismatch Detection | Identified complex errors missed by standard SQL filters. |
+| **Automation Layer** | Stored Procedures & Database Triggers | Real-time Integration Triggers | Reduced administrative overhead and improved response times. |
+| **Security Layer** | HN Primary Key & PII Minimization | PDPA Compliance Protocols | Secured **400K+ records** against duplication & leakage. |
 
 ---
 
-## 4. Professional Contact
-**Ratchanon Noknoy** [LinkedIn](https://linkedin.com/in/ratchanon-noknoy/) | [GitHub](https://github.com/ratchanon.noknoy2318) | ratchanon.noknoy2318@gmail.com
+### 2. Database Schema Architecture (Patient Master)
+
+| Field Name | Data Type | SQL Constraint | PDPA/Functional Role |
+| :--- | :--- | :--- | :--- |
+| **hn** | **VARCHAR(10)** | **PRIMARY KEY** | **Internal Hospital Reference (Unique)** |
+| citizen_id | VARCHAR(13) | UNIQUE / NOT NULL | PII - Identity Verification |
+| title | VARCHAR(20) | NOT NULL | Identity - Name Prefix |
+| first_name | VARCHAR(100) | NOT NULL | Identity - Patient Given Name |
+| last_name | VARCHAR(100) | NOT NULL | Identity - Patient Surname |
+| birthdate | DATE | NOT NULL | Sensitive - Logic for AI Age-Validation |
+| gender | INT | CHECK (1,2) | Demographic Analysis |
+| house_number | VARCHAR(50) | - | Location - Household Logistics |
+| road | VARCHAR(100) | - | Location - Infrastructure Planning |
+| village_name | VARCHAR(100) | - | Location - Geospatial Resource Allocation |
+
+---
+
+### 3. Core Technical Competencies
+* **Environment:** HOSxP Production Database (MySQL/MariaDB)
+* **Language:** Advanced SQL (DML, DDL, DCL)
+* **Framework:** Data Governance & Master Data Management (MDM)
+
+---
+
+### 4. Contact Information
+* **Lead Engineer:** Ratchanon Noknoy
+* **LinkedIn:** [linkedin.com/in/ratchanon-noknoy/](https://linkedin.com/in/ratchanon-noknoy/)
+* **GitHub:** [github.com/ratchanon-noknoy2318](https://github.com/ratchanon-noknoy2318)
+* **Email:** ratchanon.noknoy2318@gmail.com
